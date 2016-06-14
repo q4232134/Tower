@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="355" id="KGk-i7-Jjw" customClass="HBAppCell" customModule="Tower" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="48" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="48" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="calendar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOv-wr-VL4">
+                        <rect key="frame" x="3" y="58" width="45" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" translatesAutoresizingMaskIntoConstraints="NO" id="ehe-L5-jD3">
+                        <rect key="frame" x="0.0" y="0.0" width="48" height="60"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="ehe-L5-jD3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7dJ-Gx-QaG"/>
+                    <constraint firstAttribute="bottom" secondItem="mOv-wr-VL4" secondAttribute="bottom" id="JLx-NO-xcY"/>
+                    <constraint firstAttribute="trailing" secondItem="ehe-L5-jD3" secondAttribute="trailing" id="b64-lh-kKw"/>
+                    <constraint firstItem="ehe-L5-jD3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jTp-0h-dCQ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ehe-L5-jD3" secondAttribute="bottom" constant="11" id="lim-P1-MUA"/>
+                    <constraint firstItem="mOv-wr-VL4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-5" id="qAp-nj-UmH"/>
+                    <constraint firstItem="ehe-L5-jD3" firstAttribute="trailing" secondItem="mOv-wr-VL4" secondAttribute="trailing" id="sGH-YL-ztK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="headView" destination="ehe-L5-jD3" id="FWl-45-HGS"/>
+                <outlet property="label" destination="mOv-wr-VL4" id="9YT-w0-LzU"/>
+            </connections>
+            <point key="canvasLocation" x="425" y="311"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="calendar" width="256" height="256"/>
+    </resources>
+</document>
