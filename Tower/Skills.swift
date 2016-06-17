@@ -34,7 +34,7 @@ protocol Growable{
      
      - returns: 计算完成后数据
      */
-    func getData()->Double
+    func getData()->Float
 }
 
 protocol Status{
@@ -58,7 +58,7 @@ class Skill:BaseAbility,Growable{
     var name:String = "" //技能名称
     var description:String = "" //技能描述
     
-    func getData()->Double{
+    func getData()->Float{
         return 0
     }
     func act(target:Person)->String{
@@ -78,7 +78,7 @@ class BaseSetting{
      
      - returns: 伤害
      */
-    static func getAtkDamage(attack:Double,define:Double)->Double{
+    static func getAtkDamage(attack:Float,define:Float)->Float{
         let temp = attack - define
         if (temp > 0){
             return temp
@@ -96,7 +96,7 @@ class BaseSetting{
      
      - returns: 伤害
      */
-    static func getMgcDamage(attack:Double,define:Double)->Double{
+    static func getMgcDamage(attack:Float,define:Float)->Float{
         return attack * (1 - define/100 + define)
     }
 
@@ -113,16 +113,22 @@ class Skill01:Skill,Status{
     var during = 3
     
     override func act(target: Person) -> String {
+        var hpAdd = target.hpMax.real
         target.str.plus.percent += getData()
+        hpAdd = target.hpMax.real - hpAdd
+        target.hp += hpAdd
         return "力量增加\(getData())"
     }
     
-    override func getData()->Double{
-        return 0.3 + Double(lv) * 0.1
+    override func getData()->Float{
+        return 0.3 + Float(lv) * 0.1
     }
     
     func end(target:Person) {
         target.str.plus.percent -= getData()
+        if target.hp > target.hpMax.real {
+            target.hp  = target.hpMax.real
+        }
     }
 }
 
@@ -134,7 +140,7 @@ class Skill02:Skill{
         super.description = "进行普通攻击"
     }
     
-    override func getData() -> Double {
+    override func getData() -> Float {
         return source.atk.real
     }
     
@@ -153,8 +159,8 @@ class Skill03:Skill{
         super.description = "发射一团大火球进行攻击造成\(getData())伤害"
     }
 
-    override func getData()->Double{
-        return source.int.real * (1.5 + Double(lv) * 0.3)
+    override func getData()->Float{
+        return source.int.real * (1.5 + Float(lv) * 0.3)
     }
 
     

@@ -15,8 +15,15 @@ class SecondViewController: UIViewController, UITableViewDataSource,HBTableViewD
     @IBOutlet weak var enemyEqTableeView: UITableView!
     @IBOutlet weak var historyTableView: UITableView!
     
-    @IBOutlet weak var hpProgress: UIProgressView!
-    @IBOutlet weak var phyProgress: UIProgressView!
+    @IBOutlet weak var ourHpProgress: UIProgressView!
+    @IBOutlet weak var ourPhyProgress: UIProgressView!
+    @IBOutlet weak var ourHpNum: UILabel!
+    @IBOutlet weak var ourPhyNum: UILabel!
+    
+    @IBOutlet weak var distanceNum: UILabel!
+    @IBOutlet weak var enemyHpProgress: UIProgressView!
+    @IBOutlet weak var enemyPhyProgress: UIProgressView!
+    @IBOutlet weak var enemyHpNum: UILabel!
     
     @IBOutlet weak var our: UIImageView!
     @IBOutlet weak var enemy: UIImageView!
@@ -29,8 +36,15 @@ class SecondViewController: UIViewController, UITableViewDataSource,HBTableViewD
     
     //可选技能列表
     var skillList:Array<Skill> = []
-    var historyList:Array<(title:String,content:String)> = []
+    var historyList:Array<(title:String,content:String,color:UIColor,aligment:NSTextAlignment)> = []
     
+    func updateProgress(){
+        ourHpNum.text = "\(Int(ourPerson.hp))/\(Int(ourPerson.hpMax.real))"
+        ourHpProgress.setProgress(ourPerson.hp / ourPerson.hpMax.real, animated: true)
+        enemyHpNum.text = "\(Int(enemyPerson.hp))/\(Int(enemyPerson.hpMax.real))"
+        enemyHpProgress.setProgress(enemyPerson.hp / enemyPerson.hpMax.real, animated: true)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,9 +61,8 @@ class SecondViewController: UIViewController, UITableViewDataSource,HBTableViewD
         ratingBar.delegate = self
         ourPerson = Player.create("法师", str: 3, con: 5, int: 8, agi: 3)
         enemyPerson = Player.create("战士", str: 7, con: 6, int: 3, agi: 4)
+        updateProgress()
         initDate()
-        //        ablist.append([Skill01(),Skill02(our),Status01(our)])
-        
     }
     
     func initDate(){
@@ -68,13 +81,19 @@ class SecondViewController: UIViewController, UITableViewDataSource,HBTableViewD
         print(rating)
     }
     
-    
+    var num = 0
     func tableView(horizontalTableView: HBHorizontalTableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         let skill = skillList[indexPath.item]
-        historyList.append((skill.name,skill.act(enemyPerson)))
+        num += 1
+        if num % 2 == 0 {
+            historyList.append((skill.name,skill.act(ourPerson),UIColor.redColor(),NSTextAlignment.Right))
+        }else{
+            historyList.append((skill.name,skill.act(enemyPerson),UIColor.blueColor(),NSTextAlignment.Left))
+        }
         historyTableView.reloadData()
-        let ns = NSIndexPath(forRow: 0, inSection: 0)
+        updateProgress()
+        let ns = NSIndexPath(forRow: historyList.count - 1, inSection: 0)
         historyTableView.scrollToRowAtIndexPath(ns, atScrollPosition:.None, animated: true)
     }
     
@@ -168,9 +187,12 @@ class SecondViewController: UIViewController, UITableViewDataSource,HBTableViewD
      - returns: return value description
      */
     private func getHistoryEqCell(tableView: UITableView,indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCellWithIdentifier("historyCell", forIndexPath: indexPath)
-        cell.textLabel?.text = historyList[historyList.count - indexPath.item - 1].title
-        cell.detailTextLabel?.text = historyList[historyList.count - indexPath.item - 1].content
+        let cell = tableView.dequeueReusableCellWithIdentifier("historyCell", forIndexPath: indexPath) as! HistoryCell
+        cell.titleLabel.text = historyList[indexPath.item].title
+        cell.subLabel.text = historyList[indexPath.item].content
+        cell.titleLabel.textColor = historyList[indexPath.item].color
+        cell.titleLabel.textAlignment = historyList[indexPath.item].aligment
+        cell.subLabel.textAlignment = historyList[indexPath.item].aligment
         return cell
     }
     

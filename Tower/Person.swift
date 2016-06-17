@@ -12,9 +12,9 @@ import Foundation
 *  属性结构体
 */
 public struct Attribute{
-    var base:() ->Double = {return 0}//基础属性
-    var plus:(percent:Double,add:Double) = (0.0 , 0.0) //属性加成
-    var real:Double{ //最终属性
+    var base:() ->Float = {return 0}//基础属性
+    var plus:(percent:Float,add:Float) = (0.0 , 0.0) //属性加成
+    var real:Float{ //最终属性
         get{
             return (base() + plus.add) * (1 + plus.percent)
         }
@@ -41,11 +41,11 @@ class BasePerson{
 /// 人物类
 class Person:BasePerson{
     var hpMax = Attribute()  //生命上限
-    var hp:Double = 0.0  //生命
+    var hp:Float = 0.0  //生命
     var mpMax = Attribute()  //魔力上限
-    var mp:Double = 0.0  //魔力
+    var mp:Float = 0.0  //魔力
     var engMax = Attribute() //体能上限
-    var eng:Double = 0.0 //体能
+    var eng:Float = 0.0 //体能
     var atk = Attribute() //攻击
     var def = Attribute() //防御
     var mdef = Attribute()//魔法抗性
@@ -57,7 +57,7 @@ class Person:BasePerson{
 
 class Player{
     
-    static func create(name:String , str:Double , con:Double , int:Double , agi:Double) -> Person{
+    static func create(name:String , str:Float , con:Float , int:Float , agi:Float) -> Person{
         let temp = Person()
         temp.id = 1
         temp.name = name

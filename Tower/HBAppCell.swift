@@ -24,3 +24,9 @@ class HBAppCell: UITableViewCell {
     }
     
 }
+
+class HistoryCell:UITableViewCell {
+    @IBOutlet weak var titleLabel: UILabel!
+
+    @IBOutlet weak var subLabel: UILabel!
+}
