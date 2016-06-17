@@ -15,6 +15,7 @@ class SecondViewController: UIViewController, UITableViewDataSource,HBTableViewD
     @IBOutlet weak var enemyEqTableeView: UITableView!
     @IBOutlet weak var historyTableView: UITableView!
     
+    @IBOutlet weak var switcher: UISwitch!
     @IBOutlet weak var ourHpProgress: UIProgressView!
     @IBOutlet weak var ourPhyProgress: UIProgressView!
     @IBOutlet weak var ourHpNum: UILabel!
@@ -62,13 +63,25 @@ class SecondViewController: UIViewController, UITableViewDataSource,HBTableViewD
         ourPerson = Player.create("法师", str: 3, con: 5, int: 8, agi: 3)
         enemyPerson = Player.create("战士", str: 7, con: 6, int: 3, agi: 4)
         updateProgress()
-        initDate()
+        initDate(ourPerson,enemy: enemyPerson)
     }
     
-    func initDate(){
-        skillList.append(Skill01(source : ourPerson))
-        skillList.append(Skill02(source : ourPerson))
-        skillList.append(Skill03(source : ourPerson))
+    @IBAction func onSwitched(sender: UISwitch) {
+        if sender.on{
+            initDate(ourPerson,enemy:enemyPerson)
+        }else{
+            initDate(enemyPerson,enemy: ourPerson)
+        }
+        
+    }
+    
+    func initDate(source:Person,enemy:Person){
+        skillList.removeAll()
+        skillList.append(Skill01(source : source,enemy: enemy))
+        skillList.append(Skill02(source : source,enemy: enemy))
+        skillList.append(Skill03(source : source,enemy: enemy))
+        skillList.append(Skill04(source : source,enemy: enemy))
+        hview.reloadInputViews()
     }
     
     func htableView(horizontalTableView: HBHorizontalTableView, numberOfRowsInSection section: Int) -> Int
@@ -81,15 +94,13 @@ class SecondViewController: UIViewController, UITableViewDataSource,HBTableViewD
         print(rating)
     }
     
-    var num = 0
     func tableView(horizontalTableView: HBHorizontalTableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         let skill = skillList[indexPath.item]
-        num += 1
-        if num % 2 == 0 {
-            historyList.append((skill.name,skill.act(ourPerson),UIColor.redColor(),NSTextAlignment.Right))
+        if switcher.on {
+            historyList.append((skill.name,skill.act(),UIColor.blueColor(),NSTextAlignment.Left))
         }else{
-            historyList.append((skill.name,skill.act(enemyPerson),UIColor.blueColor(),NSTextAlignment.Left))
+            historyList.append((skill.name,skill.act(),UIColor.redColor(),NSTextAlignment.Right))
         }
         historyTableView.reloadData()
         updateProgress()

@@ -223,8 +223,8 @@
                                                 <rect key="frame" x="58" y="18" width="254" height="2"/>
                                                 <color key="progressTintColor" red="0.0" green="0.8829703283" blue="0.39698540869999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </progressView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="333/1823" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpj-Ro-gdN">
-                                                <rect key="frame" x="157" y="0.0" width="57" height="16"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="333/1823" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpj-Ro-gdN">
+                                                <rect key="frame" x="162" y="3" width="47" height="13"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -234,6 +234,7 @@
                                         <color key="backgroundColor" red="0.17713728049999999" green="0.79905756699999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="hlt-Ju-KdN" firstAttribute="width" secondItem="tF5-Du-FMQ" secondAttribute="width" id="1XQ-yS-aJc"/>
+                                            <constraint firstItem="Jpj-Ro-gdN" firstAttribute="centerY" secondItem="hlt-Ju-KdN" secondAttribute="centerY" id="Dl4-Od-zFd"/>
                                             <constraint firstItem="hlt-Ju-KdN" firstAttribute="top" secondItem="hJU-Xx-zLU" secondAttribute="top" constant="8" id="NXb-KZ-P4y"/>
                                             <constraint firstItem="hlt-Ju-KdN" firstAttribute="leading" secondItem="yRb-TH-7Ma" secondAttribute="trailing" constant="8" id="UMw-SM-62q"/>
                                             <constraint firstItem="yRb-TH-7Ma" firstAttribute="centerY" secondItem="hJU-Xx-zLU" secondAttribute="centerY" id="Xud-BL-JO2"/>
@@ -241,6 +242,7 @@
                                             <constraint firstItem="tF5-Du-FMQ" firstAttribute="top" secondItem="hlt-Ju-KdN" secondAttribute="bottom" constant="8" id="YVH-LK-iqh"/>
                                             <constraint firstAttribute="trailing" secondItem="hlt-Ju-KdN" secondAttribute="trailing" constant="8" id="nkm-zV-0KH"/>
                                             <constraint firstItem="tF5-Du-FMQ" firstAttribute="leading" secondItem="hlt-Ju-KdN" secondAttribute="leading" id="oq2-jL-WWp"/>
+                                            <constraint firstItem="Jpj-Ro-gdN" firstAttribute="centerX" secondItem="hlt-Ju-KdN" secondAttribute="centerX" id="pBw-ff-jJC"/>
                                             <constraint firstItem="yRb-TH-7Ma" firstAttribute="leading" secondItem="hJU-Xx-zLU" secondAttribute="leading" constant="1" id="xgn-Mh-exN"/>
                                         </constraints>
                                     </view>
@@ -269,6 +271,7 @@
                                                         <integer key="value" value="12"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="canAnimation" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isIndicator" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oea-N7-nnW">
@@ -411,15 +414,26 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rSe-W9-98V">
+                                        <rect key="frame" x="0.0" y="366" width="42" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="rSe-W9-98V" secondAttribute="height" multiplier="49:31" id="zCX-rc-H2S"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="onSwitched:" destination="8rJ-Kc-sve" eventType="valueChanged" id="luP-hu-oqm"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="rSe-W9-98V" firstAttribute="leading" secondItem="m8H-IY-8Im" secondAttribute="leading" id="0RN-ve-IGm"/>
                                     <constraint firstItem="uwU-00-lLo" firstAttribute="leading" secondItem="m8H-IY-8Im" secondAttribute="leading" id="1Nj-GS-rMg"/>
                                     <constraint firstItem="hJU-Xx-zLU" firstAttribute="top" secondItem="uwU-00-lLo" secondAttribute="bottom" id="30g-tp-cu4"/>
                                     <constraint firstItem="uwU-00-lLo" firstAttribute="leading" secondItem="hJU-Xx-zLU" secondAttribute="leading" id="3Ej-gM-xJd"/>
                                     <constraint firstItem="dFR-kN-hId" firstAttribute="centerX" secondItem="hJU-Xx-zLU" secondAttribute="centerX" id="6vf-9b-ZoG"/>
                                     <constraint firstItem="dFR-kN-hId" firstAttribute="leading" secondItem="TL9-lb-CLr" secondAttribute="trailing" constant="8" symbolic="YES" id="BCN-8u-SR0"/>
                                     <constraint firstItem="dFR-kN-hId" firstAttribute="top" secondItem="hJU-Xx-zLU" secondAttribute="bottom" constant="8" symbolic="YES" id="EqV-y2-pMP"/>
+                                    <constraint firstItem="dFR-kN-hId" firstAttribute="leading" secondItem="rSe-W9-98V" secondAttribute="trailing" id="GXJ-Mt-Lfz"/>
                                     <constraint firstItem="TL9-lb-CLr" firstAttribute="bottom" secondItem="eUj-5i-GYe" secondAttribute="bottom" id="L6K-W4-gz2"/>
                                     <constraint firstAttribute="trailing" secondItem="uwU-00-lLo" secondAttribute="trailing" id="Std-za-uwO"/>
                                     <constraint firstItem="uwU-00-lLo" firstAttribute="trailing" secondItem="hJU-Xx-zLU" secondAttribute="trailing" id="Vas-9c-UcK"/>
@@ -432,6 +446,7 @@
                                     <constraint firstItem="Kbt-pk-AFn" firstAttribute="top" secondItem="dFR-kN-hId" secondAttribute="bottom" constant="8" symbolic="YES" id="o1t-eW-GNj"/>
                                     <constraint firstItem="uwU-00-lLo" firstAttribute="trailing" secondItem="eUj-5i-GYe" secondAttribute="trailing" id="qq6-xs-vLp"/>
                                     <constraint firstItem="TL9-lb-CLr" firstAttribute="top" secondItem="eUj-5i-GYe" secondAttribute="top" id="sqj-3a-LVP"/>
+                                    <constraint firstItem="Kbt-pk-AFn" firstAttribute="top" secondItem="rSe-W9-98V" secondAttribute="bottom" constant="8" id="xXW-v7-Aho"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -464,6 +479,7 @@
                         <outlet property="ourPhyNum" destination="Rrc-GQ-CKn" id="aWR-Xq-Nbl"/>
                         <outlet property="ourPhyProgress" destination="GbI-Pw-TT0" id="jrm-35-Cq3"/>
                         <outlet property="ratingBar" destination="M1p-Je-oT7" id="2ym-7u-JM8"/>
+                        <outlet property="switcher" destination="rSe-W9-98V" id="wAA-KD-5i6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
